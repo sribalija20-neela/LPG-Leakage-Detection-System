@@ -95,7 +95,7 @@ void Send_Emergency_SMS(void) {
     _delay_ms(200);
     UART_SendString("AT+CMGF=1\r\n"); // Set GSM module to Text Mode
     _delay_ms(200);
-    UART_SendString("AT+CMGS=\"+917981801543\"\r\n"); 
+  UART_SendString("AT+CMGS=\"+91XXXXXXXXXX\"\r\n");
     _delay_ms(200);
     UART_SendString("ALERT: Critical LPG Gas Leakage Detected! Location Coordinates: Lat 17.3850, Lon 78.4867.\r\n");
     _delay_ms(200);

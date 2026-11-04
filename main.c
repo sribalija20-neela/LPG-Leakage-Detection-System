@@ -97,7 +97,7 @@ void Send_Emergency_SMS(void) {
     _delay_ms(200);
   UART_SendString("AT+CMGS=\"+91XXXXXXXXXX\"\r\n");
     _delay_ms(200);
-    UART_SendString("ALERT: Critical LPG Gas Leakage Detected! Location Coordinates: Lat 17.3850, Lon 78.4867.\r\n");
+  UART_SendString("ALERT: Critical LPG Gas Leakage Detected! Please check the location manually.\r\n");
     _delay_ms(200);
     UART_Transmit(26); // Send Ctrl+Z character to transmit text package over network
     _delay_ms(1000);

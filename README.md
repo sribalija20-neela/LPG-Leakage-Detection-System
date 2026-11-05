@@ -1,117 +1,84 @@
-# LPG Leakage Detection and SMS Alert System
-
-An embedded systems project built using **Embedded C and the ATmega328P microcontroller** to detect LPG gas leakage and trigger an audible warning and SMS alert using a SIM808 GSM module.
+# LPG Leakage Detection System
 
 ## Project Overview
 
-LPG leakage can create serious fire and safety risks. This project uses an MQ-6 gas sensor to monitor gas concentration. When the sensor reading crosses a configured threshold, the ATmega328P activates a buzzer and sends an emergency SMS through the SIM808 GSM module.
+An embedded systems project developed using **Embedded C** and the **ATmega328P microcontroller** to detect LPG leakage and provide an audible alert using a buzzer.
 
-The firmware is developed using bare-metal Embedded C and AVR register-level peripheral configuration.
+The system uses an MQ-6 gas sensor to monitor gas levels. When gas is detected above the configured threshold, the buzzer is activated to alert users.
 
 ## Key Features
 
-- LPG gas detection using the MQ-6 sensor.
-- Analog sensor reading through the ATmega328P ADC.
-- Configurable gas detection threshold.
-- Audible warning through a buzzer.
-- UART-based communication with the SIM808 GSM module.
-- SMS alert when the gas reading exceeds the threshold.
-- Alert flag to prevent repeated SMS transmission while the reading remains above the threshold.
-
-## System Architecture
-
-```mermaid
-flowchart TD
-    A[MQ-6 Gas Sensor] -->|Analog Signal| B[ATmega328P]
-    B -->|ADC Reading| C[Threshold Detection]
-    C -->|Leakage Detected| D[Buzzer Alert]
-    C -->|UART Communication| E[SIM808 GSM Module]
-    E -->|SMS Alert| F[Registered Mobile Number]
-```
+- LPG detection using the MQ-6 gas sensor.
+- Analog sensor data acquisition through the ATmega328P ADC.
+- Threshold-based gas detection.
+- Audible alert through a buzzer.
+- Bare-metal Embedded C implementation.
+- Hardware implementation and testing as a college project.
 
 ## Hardware Components
 
-| Component | Purpose |
-|---|---|
-| ATmega328P | Main microcontroller |
-| MQ-6 Gas Sensor | LPG detection |
-| SIM808 GSM Module | SMS communication |
-| Buzzer | Audible warning |
-| Power Supply | Powers the circuit |
-| Connecting Wires | Hardware interconnections |
+- ATmega328P Microcontroller
+- MQ-6 LPG Gas Sensor
+- Buzzer
+- Connecting wires
+- Power supply
+- Supporting circuit components
 
-## Pin Configuration
-
-| ATmega328P Pin | Function |
-|---|---|
-| PC0 / ADC0 | MQ-6 analog output |
-| PB5 | Buzzer control |
-| PD0 / RXD | UART receive from SIM808 |
-| PD1 / TXD | UART transmit to SIM808 |
-
-**Communication configuration:**
-- Microcontroller clock: 16 MHz
-- UART baud rate: 9600 bps
-- ADC input channel: ADC0
-
-## Software and Development Tools
+## Software & Technologies
 
 - Programming Language: Embedded C
 - Microcontroller: ATmega328P
-- IDE: Microchip Studio 7
-- Compiler: AVR-GCC
-- Communication Protocol: UART
-- Peripheral Configuration: AVR register-level programming
+- Development Environment: AVR toolchain
+- Architecture: Bare-metal AVR
 
 ## Working Principle
 
-1. The MQ-6 sensor monitors the surrounding air for LPG.
-2. Its analog output is read using the ATmega328P ADC.
-3. The firmware compares the ADC reading against the configured gas threshold.
-4. When the reading exceeds the threshold, the buzzer is activated.
-5. The microcontroller communicates with the SIM808 module using UART AT commands.
-6. An SMS alert is sent to the configured mobile number.
-7. The alert flag prevents repeated SMS transmission until the sensor reading falls below the threshold.
+1. The MQ-6 sensor monitors the surrounding environment for LPG.
+2. The sensor provides an analog output corresponding to the detected gas concentration.
+3. The ATmega328P reads the sensor output through its ADC.
+4. The measured value is compared against a predefined threshold.
+5. When the threshold condition is met, the buzzer is activated to provide an audible warning.
+
+## Hardware Implementation & Testing
+
+This project was implemented and tested using physical hardware as part of a college project.
+
+- Tested MQ-6 sensor response to gas.
+- Verified ADC-based sensor readings.
+- Tested buzzer activation during gas detection.
+- Verified the basic detection and alert functionality.
 
 ## Project Structure
 
 ```text
-LPG-Leakage-Detection-System/
+LPG-Leakage-Detection/
 │
 ├── main.c
 ├── README.md
-└── images/
-    ├── architecture.png
-    └── hardware_setup.jpg
+└── .gitignore
 ```
 
-*The images folder can be added when the architecture and hardware setup images are uploaded.*
+## Applications
 
-## Important Implementation Notes
-
-- The gas threshold is a configurable ADC value and must be calibrated through sensor testing. It is not a certified safety limit.
-- The current firmware uses placeholder SMS destination details for public-source safety.
-- The current SMS message does not contain live GPS coordinates. GPS data acquisition and parsing are not implemented.
-- The SIM808 communication routine uses fixed delays and does not verify modem responses. Reliable operation requires hardware testing and modem-response handling.
-- Actual gas detection performance depends on sensor calibration, warm-up, power supply, and hardware integration.
+- LPG leakage warning systems
+- Domestic gas safety monitoring
+- Basic industrial gas detection applications
+- Embedded safety monitoring systems
 
 ## Future Improvements
 
-- Implement live GPS data acquisition and parsing.
-- Add UART response checking and error handling for the GSM module.
-- Introduce threshold hysteresis to improve alert stability.
-- Add sensor calibration and improved gas-level monitoring.
-- Perform complete hardware validation and testing.
-
-## Build Status
-
-The firmware has been successfully compiled in Microchip Studio for the ATmega328P, and a HEX output file has been generated.
-
-**Note:** Successful compilation does not yet establish physical hardware functionality; hardware validation is still required.
+- Add an LCD display for sensor readings.
+- Integrate GSM or Wi-Fi notifications.
+- Improve calibration and threshold accuracy.
+- Add data logging for monitoring gas-level changes.
 
 ## Author
 
-**Balija Neela Sri**
+**Neelasri Balija**
 
-Embedded Systems | Firmware Development | Embedded C
+*Embedded Systems | Embedded C | Microcontrollers*
+
+---
+
+**Disclaimer:** This project is an educational prototype and should not be used as a replacement for certified commercial gas safety equipment.
 
